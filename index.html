@@ -1,0 +1,252 @@
+<!doctype html>
+<!-- ═══════════════════════════════════════════════════════════════════
+     LEGACY — YOUR STORY, FOREVER · legacyrecording.app
+     Design direction: "The Grooves of a Life" — a cinematic descent from
+     parchment daylight into a candlelit family archive, built on
+     concentric rings: tree rings, record grooves, sound waves.
+     Designed & built end-to-end by Claude (Fable 5). See /guide.
+     ═══════════════════════════════════════════════════════════════════ -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legacy — Your Story, Forever</title>
+<meta name="description" content="Legacy guides the people you love through a recorded interview of their whole life — one gentle question at a time. Their voice becomes a place your family keeps forever.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Legacy — Your Story, Forever">
+<meta property="og:description" content="One day, their voice will be your family’s most precious thing. Keep it.">
+<meta property="og:image" content="https://legacyrecording.app/assets/img/og.jpg">
+<meta property="og:url" content="https://legacyrecording.app">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#151009">
+<link rel="preload" href="/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body data-stage="dawn">
+
+<canvas id="loom" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <a class="wordmark" href="/">Legacy</a>
+  <nav aria-label="Site">
+    <a class="nav-link" href="/guide/">How this site was made</a>
+    <a class="nav-cta" href="#waitlist">Get the app</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ── I · DAWN ─────────────────────────────────────────────── -->
+  <section class="hero" id="top" data-scene="disc">
+    <p class="kicker reveal">For iPhone · first families 2026</p>
+    <h1 class="reveal">
+      <span class="line">Your voice</span>
+      <span class="line">is the <em class="wonk">heirloom</em>.</span>
+    </h1>
+    <p class="lede reveal">
+      Legacy guides your mother, your father, your grandfather — anyone whose
+      story you can&rsquo;t bear to lose — through a recorded interview of their
+      whole life. One gentle question at a time.
+    </p>
+    <div class="hero-actions reveal">
+      <a class="btn-primary" href="#waitlist">Join the first families</a>
+      <a class="btn-quiet" href="#listen">Hear a life<span class="arrow">↓</span></a>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ── II · THE DESCENT ─────────────────────────────────────── -->
+  <section class="descent" data-scene="thread">
+    <p class="vast reveal">Every family has a voice<br>it can <em>no longer hear</em>.</p>
+    <p class="descent-body reveal">
+      A phone number you still know by heart. A laugh you&rsquo;d give anything
+      to play once more. When a voice is gone, it is gone completely —
+      unless someone kept it.
+    </p>
+  </section>
+
+  <blockquote class="testament" data-scene="thread">
+    <p class="reveal">“Give your descendants the chance to hear your voice again
+    long after you are gone.”</p>
+    <footer class="reveal">— Henry Clay, February 2019<span class="cite-note">whose
+    guided-interview framework became this app</span></footer>
+  </blockquote>
+
+  <!-- ── III · THE METHOD ─────────────────────────────────────── -->
+  <section class="method" data-scene="rings">
+    <p class="kicker reveal">The method</p>
+    <h2 class="reveal">A tree keeps its years in <em>rings</em>.<br>
+        A record keeps a voice in <em>grooves</em>.</h2>
+    <p class="method-lede reveal">Legacy keeps both. Eight chapters trace a life
+      from first memories to final lessons, so no one has to wonder what to
+      ask — and no answer is ever lost.</p>
+
+    <ol class="steps">
+      <li class="reveal">
+        <span class="numeral">I</span>
+        <h3>One question appears</h3>
+        <p>Drawn from chapters that follow a life in order — birth, school,
+        love, work, children, wisdom. Never a blank page. Never “tell me
+        about yourself.”</p>
+      </li>
+      <li class="reveal">
+        <span class="numeral">II</span>
+        <h3>They simply speak</h3>
+        <p>The app records, keeps, and transcribes every word — in the only
+        voice that can tell it. A photograph can be pinned to any memory.</p>
+      </li>
+      <li class="reveal">
+        <span class="numeral">III</span>
+        <h3>It becomes a place</h3>
+        <p>Every answer publishes to a private family website — a quiet
+        address where the whole story lives, and outlives.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ── IV · THE LISTENING ROOM ──────────────────────────────── -->
+  <section class="listening" id="listen" data-scene="wave">
+    <p class="kicker reveal">Chapter one · Early life</p>
+    <div class="listening-grid">
+      <figure class="portrait reveal">
+        <video id="portraitVideo" playsinline muted loop preload="none"
+               poster="/assets/img/portrait.jpg" aria-label="An old sepia photograph of Henry, smiling beside a farmhouse window, gently coming to life"></video>
+        <figcaption>Henry, beside the kitchen window.</figcaption>
+      </figure>
+      <div class="player-column">
+        <p class="asked reveal"><em>“Where were you born? What were the
+        circumstances surrounding your birth?”</em></p>
+        <div class="player reveal" id="player">
+          <button id="playBtn" class="play-btn" aria-label="Play Henry’s answer">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <circle class="ring-base" cx="24" cy="24" r="22.5"/>
+              <circle class="ring-progress" id="ringProgress" cx="24" cy="24" r="22.5" pathLength="100"/>
+              <path class="ic-play" d="M19 15.5v17l15-8.5z"/>
+              <g class="ic-pause"><rect x="17" y="15" width="4.5" height="18" rx="1"/><rect x="26.5" y="15" width="4.5" height="18" rx="1"/></g>
+            </svg>
+          </button>
+          <div class="player-meta">
+            <canvas id="waveCanvas" aria-hidden="true"></canvas>
+            <div class="player-time"><span id="timeNow">0:00</span><span id="timeEnd">0:17</span></div>
+          </div>
+        </div>
+        <p class="transcript" id="transcript" aria-live="off"></p>
+        <p class="demo-note reveal">Henry is a demonstration, voiced for this
+        preview. The chair, the window, and the whistling father are waiting
+        for your storyteller.</p>
+      </div>
+    </div>
+    <audio id="answerAudio" src="/assets/audio/first-sound.m4a" preload="metadata"></audio>
+  </section>
+
+  <!-- ── V · THE QUESTIONS ────────────────────────────────────── -->
+  <section class="chapters" data-scene="arcs">
+    <p class="kicker reveal">The questions</p>
+    <h2 class="reveal">Eight chapters.<br>A whole life.</h2>
+    <ol class="toc">
+      <li class="reveal"><span class="toc-num">I</span>
+        <div><h3>Early Life</h3>
+        <p class="toc-tease"><em>“What are your earliest memories?”</em></p></div>
+        <span class="toc-tag free">free</span></li>
+      <li class="reveal"><span class="toc-num">II</span>
+        <div><h3>Elementary School</h3>
+        <p class="toc-tease"><em>“Were these happy years for you? Why or why not?”</em></p></div>
+        <span class="toc-tag free">free</span></li>
+      <li class="reveal"><span class="toc-num">III</span>
+        <div><h3>Middle &amp; High School</h3>
+        <p class="toc-tease sealed">questions sealed until you begin</p></div></li>
+      <li class="reveal"><span class="toc-num">IV</span>
+        <div><h3>College Years</h3>
+        <p class="toc-tease sealed">asked only if they went</p></div></li>
+      <li class="reveal"><span class="toc-num">V</span>
+        <div><h3>Military Service</h3>
+        <p class="toc-tease sealed">asked only if they served</p></div></li>
+      <li class="reveal"><span class="toc-num">VI</span>
+        <div><h3>Marriage</h3>
+        <p class="toc-tease"><em>“Who fell in love first?”</em></p></div></li>
+      <li class="reveal"><span class="toc-num">VII</span>
+        <div><h3>Children</h3>
+        <p class="toc-tease sealed">questions sealed until you begin</p></div></li>
+      <li class="reveal"><span class="toc-num">VIII</span>
+        <div><h3>Life Lessons</h3>
+        <p class="toc-tease sealed">the ones no one thinks to ask in time</p></div></li>
+    </ol>
+    <p class="toc-coda reveal">Five dozen questions in all — sequenced so the
+    easy ones open the door, and the important ones walk through it.</p>
+  </section>
+
+  <!-- ── VI · THE KEEPSAKE ────────────────────────────────────── -->
+  <section class="keepsake" data-scene="arcs">
+    <p class="kicker reveal">The keepsake</p>
+    <h2 class="reveal">Every answer becomes a<br>place your family can <em>visit</em>.</h2>
+    <p class="keepsake-lede reveal">Each storyteller gets a quiet address of
+    their own. Private by default — share a chapter, a question, or the
+    whole life. You decide who hears what.</p>
+
+    <div class="browser reveal" role="img" aria-label="Preview of a personal legacy website at henry-alder.legacyrecording.app">
+      <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="browser-url">henry-alder.legacyrecording.app</span></div>
+      <div class="browser-page">
+        <p class="bp-eyebrow">The story of</p>
+        <p class="bp-name">Henry Alder</p>
+        <p class="bp-dates">b. 1946 · told in his own voice</p>
+        <div class="bp-row"><span class="bp-play" aria-hidden="true">▶</span>
+          <div><p class="bp-q">Where were you born?</p>
+          <p class="bp-a">“…the kitchen was always warm, and my father whistled
+          while he worked. That is the first sound I ever loved.”</p></div></div>
+        <div class="bp-chapters">
+          <span class="done">I · Early Life</span>
+          <span class="done">II · Elementary School</span>
+          <span class="now">VI · Marriage — recording</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VII · THE PROMISE ────────────────────────────────────── -->
+  <section class="promise" data-scene="arcs">
+    <p class="kicker reveal">The promise</p>
+    <div class="tiers">
+      <div class="tier reveal">
+        <h3>Begin, free</h3>
+        <p class="tier-price">$0</p>
+        <p>Chapters I and II — record, publish, and share them. Forever free,
+        because every story deserves a first page.</p>
+      </div>
+      <div class="tier reveal">
+        <h3>Legacy Pass</h3>
+        <p class="tier-price">$4.99<span>/mo</span> <span class="tier-alt">or $39.99/yr</span></p>
+        <p>All eight chapters. Photographs pinned to memories. Family
+        invitations. The whole life, kept whole.</p>
+      </div>
+    </div>
+    <p class="promise-coda reveal">The recordings belong to your family —
+    not to us. Always.</p>
+  </section>
+
+  <!-- ── VIII · RETURN TO DAWN ────────────────────────────────── -->
+  <section class="finale" id="waitlist" data-scene="embers">
+    <h2 class="reveal">Someday,<br>they&rsquo;ll press <em class="wonk">play</em>.</h2>
+    <p class="finale-body reveal">Legacy arrives on iPhone this year. Be one
+    of the first families to begin.</p>
+    <a class="btn-primary btn-grand reveal" href="mailto:hello@legacyrecording.app?subject=Save%20us%20a%20place&body=We%20have%20a%20voice%20we%20want%20to%20keep.">Save us a place</a>
+    <p class="finale-fine reveal">One email. No noise. Just word when the first
+    chapter opens.</p>
+  </section>
+
+</main>
+
+<footer class="colophon">
+  <p class="colo-brand">Legacy — Your Story, Forever</p>
+  <p class="colo-made">Designed &amp; built end-to-end by <strong>Claude
+  (Fable&nbsp;5)</strong> in a single session — type, palette, 3D, motion,
+  imagery, voice, and deploy. <a href="/guide/">Read how it was made</a></p>
+  <p class="colo-legal">© 2026 legacyrecording.app</p>
+</footer>
+
+<script src="/js/main.js" defer></script>
+</body>
+</html>

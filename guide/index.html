@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How this site was made — Legacy</title>
+<meta name="description" content="A field guide to how legacyrecording.app was designed and built end-to-end by Claude (Fable 5): direction, palette, hand-rolled 3D, AI imagery, local TTS, and deployment.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="How this site was made — Legacy">
+<meta property="og:description" content="One model, one session: type, palette, 3D, motion, imagery, voice, deploy.">
+<meta name="theme-color" content="#F2ECDD">
+<link rel="preload" href="/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css">
+<style>
+  body { background: #F2ECDD; }
+  .guide-wrap {
+    position: relative; z-index: 2;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding: clamp(7rem, 14vh, 10rem) var(--gutter) 6rem;
+  }
+  .guide-wrap > * + * { margin-top: 1.35rem; }
+  .guide-kicker { composes: kicker; }
+  .guide-wrap h1 {
+    font-size: clamp(2.6rem, 6.5vw, 4.6rem);
+    font-weight: 480;
+    line-height: 1.02;
+    letter-spacing: -0.016em;
+    margin-top: 0.9rem;
+  }
+  .guide-wrap h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 520;
+    line-height: 1.15;
+    margin-top: 3.6rem;
+  }
+  .guide-wrap h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 560;
+    font-size: 1.15rem;
+    margin-top: 2.4rem;
+    color: var(--fg-strong);
+  }
+  .guide-wrap p, .guide-wrap li { color: var(--ink); font-size: 1.05rem; }
+  .guide-lede { font-size: 1.22rem !important; color: var(--ink-soft) !important; }
+  .guide-wrap ol, .guide-wrap ul { padding-left: 1.3rem; }
+  .guide-wrap li + li { margin-top: 0.55rem; }
+  .guide-wrap li::marker { color: var(--copper-deep); font-weight: 600; }
+  .guide-wrap a { color: var(--copper-deep); text-underline-offset: 3px; }
+  .guide-wrap pre {
+    background: oklch(23% 0.03 55);
+    color: oklch(88% 0.04 82);
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    overflow-x: auto;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    margin-top: 1.6rem;
+  }
+  .guide-wrap code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+  .guide-wrap p code, .guide-wrap li code {
+    background: oklch(30% 0.032 55 / 0.09);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-size: 0.88em;
+  }
+  .swatches { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.4rem; }
+  .swatch {
+    flex: 1 1 8.5rem;
+    border-radius: 8px;
+    padding: 0.9rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  .rule { border: 0; border-top: 1px solid var(--hairline); margin-top: 3.5rem; }
+  .backline { margin-top: 3.6rem; font-style: italic; }
+  .specimen {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    font-weight: 470;
+    margin-top: 1.2rem;
+    color: var(--ink-strong);
+  }
+  .specimen .wonk { font-variation-settings: "WONK" 1, "SOFT" 30; font-style: italic; }
+</style>
+</head>
+<body data-stage="dawn">
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <a class="wordmark" href="/">Legacy</a>
+  <nav aria-label="Site">
+    <a class="nav-cta" href="/">Back to the site</a>
+  </nav>
+</header>
+
+<main class="guide-wrap">
+  <p class="kicker">The colophon, expanded</p>
+  <h1>How this site was made</h1>
+  <p class="guide-lede">Everything you just scrolled — the direction, the
+  type, the palette, the 3D, the photograph, the voice, the deploy — was
+  designed and built by <strong>Claude (Fable&nbsp;5)</strong> in a single
+  working session, from one written brief. This page is the recipe, so you
+  can do the same.</p>
+
+  <h2>The brief</h2>
+  <p>The owner of this domain asked for a launch site for Legacy, an iPhone
+  app for recording a loved one’s life story — and for the site itself to be
+  a demonstration of what a frontier model can do with total creative
+  freedom: “high-quality 3D tactics, otherworldly animations, exceptional
+  color, novel type.” The model had access to a terminal, a browser for
+  screenshots, an image/video generation service, a local text-to-speech
+  server, GitHub, and Cloudflare. No human touched a file.</p>
+
+  <h2>1 · Pick one idea and commit</h2>
+  <p>Generic AI sites happen when nobody decides anything. So the first
+  artifact wasn’t code — it was a sentence:</p>
+  <p><em>“The Grooves of a Life: a cinematic descent from parchment daylight
+  into a candlelit family archive, built on concentric rings — tree rings,
+  record grooves, sound waves.”</em></p>
+  <p>Every later decision — palette, particle motion, even the pricing
+  section’s tone — had to serve that sentence or get cut. When you replicate
+  this, spend real effort here. One committed idea beats ten tasteful
+  defaults.</p>
+
+  <h2>2 · A palette with a temperature, not a hue wheel</h2>
+  <p>The site lives between two worlds: parchment (the present) and a warm
+  near-black archive (memory). Both are tinted toward the same amber hue so
+  the dissolve between them feels like dusk, not a theme toggle. Tokens are
+  defined in <code>oklch()</code> so lightness steps are perceptually even —
+  and contrast stays verifiable.</p>
+  <div class="swatches" aria-hidden="true">
+    <div class="swatch" style="background:#F2ECDD;color:#3A3128;">parchment<br>oklch(95.5% .022 84)</div>
+    <div class="swatch" style="background:#171310;color:#E9DFC9;">archive<br>oklch(16% .018 55)</div>
+    <div class="swatch" style="background:#E0B262;color:#171310;">amber gold<br>oklch(80% .112 84)</div>
+    <div class="swatch" style="background:#A66443;color:#F2ECDD;">copper<br>oklch(62% .105 50)</div>
+  </div>
+
+  <h2>3 · Type that could not be Inter</h2>
+  <p class="specimen">Your voice is the <span class="wonk">heirloom</span>.</p>
+  <p><a href="https://fonts.google.com/specimen/Fraunces">Fraunces</a> is a
+  variable “wonky old-style” serif: at display sizes its optical-size axis
+  sharpens the contrast, and its hidden <code>WONK</code> axis swaps in
+  crooked, hand-set letterforms — used sparingly on emotional words.
+  Body text is <a href="https://fonts.google.com/specimen/Newsreader">Newsreader</a>,
+  drawn for on-screen editorial reading. Both are self-hosted as variable
+  <code>woff2</code> files — four files, every weight and italic, zero
+  layout shift.</p>
+
+  <h2>4 · The 3D: 2,400 particles, zero libraries</h2>
+  <p>The animated field behind every section is one <code>&lt;canvas&gt;</code>
+  and ~150 lines of hand-rolled math. Particles live in polar coordinates;
+  each “scene” is a small function that maps a particle to a 3D point. The
+  page’s scroll position blends between scenes, then a shared projection
+  applies pointer-parallax rotation and a perspective divide:</p>
+  <pre><code>// rotate about Y by pointer, then perspective-project
+const xr =  x * cosY + z * sinY;
+const zr = -x * sinY + z * cosY;
+const s  = f / (f + zr);            // perspective divide
+px = cx + xr * R * s;
+py = cy + y  * R * s;</code></pre>
+  <p>Six scenes reuse the same particles: a leaning disc (a record on a
+  turntable), a sagging thread, speaking rings, a live waveform, eight
+  chapter arcs, and rising embers. Because the particles never die — they
+  only re-map — transitions read as one continuous material. That’s the
+  “motion dissolve”: geometry dissolves, the medium persists.</p>
+
+  <h2>5 · The waveform is real</h2>
+  <p>Press play in the listening room and the Web Audio API drives both the
+  bar waveform and the background particles: an <code>AnalyserNode</code>
+  samples the actual audio to 48 log-spaced bins each frame.</p>
+  <pre><code>const src = actx.createMediaElementSource(audio);
+analyser = actx.createAnalyser();
+analyser.fftSize = 256;
+src.connect(analyser);
+analyser.connect(actx.destination);
+// each frame: getByteFrequencyData → 48 bins → canvas + particles</code></pre>
+
+  <h2>6 · The photograph that breathes</h2>
+  <p>“Henry” does not exist. His portrait was generated with Higgsfield’s
+  Soul model (prompted as a 1958 silver-gelatin print, complete with scuffed
+  edges), padded onto a black mat, then handed to Kling 3.0 with a
+  cinemagraph prompt: <em>hold almost perfectly still; blink once; let the
+  light shift; keep the print border frozen.</em> The 5-second loop only
+  loads when you scroll near it, and never plays for visitors who prefer
+  reduced motion.</p>
+
+  <h2>7 · The voice</h2>
+  <p>Henry’s answer was synthesized with a small local text-to-speech server
+  (kyutai’s pocket-tts) and converted to AAC with macOS’s built-in
+  <code>afconvert</code> — no cloud audio API involved. The transcript
+  brightens word by word, timed against playback.</p>
+
+  <h2>8 · Restraint is a feature</h2>
+  <ul>
+    <li>Backgrounds never use pure black or white — everything is tinted
+    toward amber.</li>
+    <li>Animation touches <code>transform</code>, <code>opacity</code>, and
+    canvas only; easing is exponential, never bouncy.</li>
+    <li><code>prefers-reduced-motion</code> collapses the whole show to a
+    still frame, instantly-visible text, and a poster image.</li>
+    <li>Text contrast is checked against WCAG 2.2 AA in both worlds.</li>
+    <li>No glassmorphism, no gradient text, no icon grids. If a decoration
+    didn’t serve the grooves-of-a-life idea, it didn’t ship.</li>
+  </ul>
+
+  <h2>9 · Three iteration passes</h2>
+  <p>After the first complete build, the model audited its own work three
+  times with a headless browser — screenshotting desktop and mobile at every
+  section, then fixing what it saw: spacing rhythm, contrast failures,
+  orphaned lines, scenes that blended too early. Budget as much time for
+  looking as for building. The gap between “generated” and “designed” is
+  exactly this step.</p>
+
+  <h2>10 · Ship it</h2>
+  <pre><code># repo
+git init && git add -A && git commit -m "Legacy launch site"
+gh repo create legacyrecording-site --public --source=. --push
+
+# deploy (Cloudflare Pages)
+npx wrangler pages project create legacyrecording
+npx wrangler pages deploy . --project-name=legacyrecording --branch=main
+# then attach the custom domain in one API call</code></pre>
+
+  <hr class="rule">
+
+  <h2>Do it yourself</h2>
+  <ol>
+    <li>Write a brief with stakes: audience, tone, and “make it
+    unforgettable.” Grant real creative freedom — and real tools.</li>
+    <li>Demand a named design direction in one sentence before any code.</li>
+    <li>Have the model generate its own assets: imagery, motion, voice.
+    Everything custom, nothing stock.</li>
+    <li>Insist on hand-rolled motion over library defaults — that’s where
+    the signature lives.</li>
+    <li>Require iteration passes with screenshots. Three, minimum.</li>
+    <li>Let it deploy: GitHub → Cloudflare Pages → custom domain.</li>
+  </ol>
+
+  <p class="backline">Built with Claude Code. Directed by one prompt.
+  <a href="/">Return to the site ↩</a></p>
+</main>
+
+<footer class="colophon">
+  <p class="colo-brand">Legacy — Your Story, Forever</p>
+  <p class="colo-made">Site and guide by <strong>Claude (Fable&nbsp;5)</strong>.</p>
+  <p class="colo-legal">© 2026 legacyrecording.app</p>
+</footer>
+</body>
+</html>
