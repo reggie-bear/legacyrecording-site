@@ -307,6 +307,13 @@ em { font-style: italic; }
   color: var(--fg-dim);
   transition: color 0.9s ease;
 }
+.descent-echo {
+  margin-top: 1.3rem;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 460;
+  color: var(--fg-strong);
+}
 
 .testament {
   padding: 16vh var(--gutter) 20vh;
@@ -376,6 +383,51 @@ em { font-style: italic; }
   transition: color 0.9s ease;
 }
 .steps p { color: var(--fg-dim); font-size: 1rem; transition: color 0.9s ease; }
+
+/* the ledger: what one answer becomes */
+.becomes {
+  margin-top: clamp(4.5rem, 10vh, 7.5rem);
+  margin-left: clamp(0rem, 22vw, 24rem);   /* deep asymmetric drift */
+  max-width: 34rem;
+}
+.becomes-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 460;
+  font-size: 1.35rem;
+  color: var(--fg-strong);
+  transition: color 0.9s ease;
+}
+.becomes-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.4rem;
+}
+.becomes-list li {
+  position: relative;
+  padding: 0.95rem 0 0.95rem 1.9rem;
+  border-top: 1px solid var(--hairline);
+  color: var(--fg-dim);
+  font-size: 1.02rem;
+  transition: color 0.9s ease, border-color 0.9s ease;
+}
+.becomes-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 1.45rem;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  transition: border-color 0.9s ease;
+}
+.becomes-list em {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 520;
+  font-size: 1.1em;
+  color: var(--fg-strong);
+  transition: color 0.9s ease;
+}
 
 /* ── IV · Listening room ────────────────────────────────────────── */
 .listening { padding: 14vh var(--gutter); }
@@ -586,9 +638,37 @@ em { font-style: italic; }
   margin-top: 0.35rem;
 }
 .bp-dates { font-size: 0.92rem; font-style: italic; color: var(--ink-soft); margin-top: 0.3rem; }
+.bp-timeline {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid oklch(30% 0.032 55 / 0.28);
+  padding-top: 0.65rem;
+  margin-top: 1.9rem;
+}
+.tl-year {
+  position: relative;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.tl-year::before {
+  content: '';
+  position: absolute;
+  top: calc(-0.65rem - 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--parchment);
+  border: 1.5px solid var(--copper-deep);
+}
+.tl-year.on { color: var(--copper-deep); font-weight: 600; }
+.tl-year.on::before { background: var(--copper-deep); }
+
 .bp-row {
   display: flex; gap: 1.1rem;
-  margin-top: 2rem;
+  margin-top: 1.7rem;
   padding-top: 1.6rem;
   border-top: 1px solid oklch(30% 0.032 55 / 0.18);
 }
@@ -710,6 +790,7 @@ em { font-style: italic; }
   .colophon { grid-template-columns: 1fr; gap: 1.1rem; }
   .browser { margin-left: 0; }
   .descent-body { margin-left: 0; }
+  .becomes { margin-left: 0; }
 }
 @media (max-width: 620px) {
   .nav-link { display: none; }
