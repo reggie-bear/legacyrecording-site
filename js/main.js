@@ -434,10 +434,12 @@
     const transcriptEl = document.getElementById('transcript');
     const ringEl = document.getElementById('ringProgress');
 
-    const TEXT = 'I was born in the winter of 1946, in my grandmother’s ' +
-      'farmhouse, in the same room where my own mother was born. We didn’t ' +
-      'have much in those days. But I remember the kitchen was always warm, ' +
-      'and my father whistled while he worked. That is the first sound I ever loved.';
+    const TEXT = 'First time I ever saw Dorothy Chandler, she was standing ' +
+      'on the church steps in a yellow dress, laughing at something her ' +
+      'sister said. And I turned to my buddy Ray and I said, Ray, I am ' +
+      'going to marry that girl. He laughed at me. Well. Sixty-two years, ' +
+      'three children, and a whole mess of grandbabies later… I reckon I ' +
+      'got the last laugh.';
     const words = TEXT.split(' ').map(wd => {
       const s = document.createElement('span');
       s.className = 'w';
@@ -522,7 +524,7 @@
         await audio.play();
         audioLive = true;
         playerEl.classList.add('playing');
-        btn.setAttribute('aria-label', 'Pause Henry’s answer');
+        btn.setAttribute('aria-label', 'Pause Gene’s answer');
       } else {
         audio.pause();
       }
@@ -530,7 +532,7 @@
     const stop = () => {
       audioLive = false;
       playerEl.classList.remove('playing');
-      btn.setAttribute('aria-label', 'Play Henry’s answer');
+      btn.setAttribute('aria-label', 'Play Gene’s answer');
       audioBins.fill(0);
     };
     audio.addEventListener('pause', stop);
@@ -549,7 +551,7 @@
       for (const e of entries) {
         if (e.isIntersecting) {
           if (!v.src) {
-            v.src = '/assets/img/portrait-live.mp4';
+            v.src = '/assets/img/gene-swing.mp4';
             v.play().catch(() => {});
           } else {
             v.play().catch(() => {});
