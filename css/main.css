@@ -592,6 +592,23 @@ em { font-style: italic; }
   max-width: 24ch;
 }
 .keepsake-lede { max-width: var(--measure); margin-top: 1.4rem; color: var(--fg-dim); transition: color 0.9s ease; }
+.keepsake-example {
+  margin: clamp(2.4rem, 5vh, 3.6rem) 0 0 clamp(0rem, 10vw, 10rem);
+  font-style: italic;
+  color: var(--fg-dim);
+  transition: color 0.9s ease;
+}
+.keepsake-actions {
+  display: flex; align-items: baseline; gap: 1.2rem; flex-wrap: wrap;
+  margin: 1.3rem 0 0 clamp(0rem, 10vw, 10rem);
+}
+.keepsake-example-note {
+  font-size: 0.8rem;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  color: var(--fg-dim);
+  transition: color 0.9s ease;
+}
 
 .browser {
   margin-top: clamp(3rem, 6vh, 5rem);
