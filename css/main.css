@@ -620,6 +620,15 @@ em { font-style: italic; }
   max-width: 24ch;
 }
 .keepsake-lede { max-width: var(--measure); margin-top: 1.4rem; color: var(--fg-dim); transition: color 0.9s ease; }
+.keepsake-meet {
+  max-width: var(--measure);
+  margin-top: 1.7rem;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--fg-strong);
+  transition: color 0.9s ease;
+}
 .keepsake-example {
   margin: clamp(2.4rem, 5vh, 3.6rem) 0 0 clamp(0rem, 10vw, 10rem);
   font-style: italic;
