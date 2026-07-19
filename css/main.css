@@ -469,6 +469,7 @@ em { font-style: italic; }
 .portrait { position: relative; }
 .portrait video, .portrait img {
   width: 100%;
+  height: auto;
   display: block;
   border-radius: 4px;
   box-shadow: 0 30px 80px oklch(0% 0 0 / 0.45);
