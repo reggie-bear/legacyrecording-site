@@ -209,12 +209,12 @@ em { font-style: italic; }
   padding-top: 9vh;
 }
 .hero h1 {
-  font-size: clamp(2.7rem, 7.4vw, 6.2rem);
+  font-size: clamp(2.4rem, 5.8vw, 5.2rem);
   font-weight: 470;
-  line-height: 0.99;
+  line-height: 1.02;
   letter-spacing: -0.018em;
   margin: 1.1rem 0 1.6rem;
-  max-width: 19ch;
+  max-width: 28ch;
 }
 .hero h1 .line { display: block; }
 .hero h1 em { font-weight: 420; }
@@ -229,6 +229,7 @@ em { font-style: italic; }
 }
 .hero h1 .line:nth-child(2) { transition-delay: calc(var(--d, 0s) + 0.16s); }
 .hero h1 .line:nth-child(3) { transition-delay: calc(var(--d, 0s) + 0.32s); }
+.hero h1 .line:nth-child(4) { transition-delay: calc(var(--d, 0s) + 0.48s); }
 .hero h1.in .line { opacity: 1; transform: none; filter: none; }
 .lede {
   font-size: clamp(1.08rem, 1.45vw, 1.32rem);
@@ -845,7 +846,9 @@ em { font-style: italic; }
 }
 @media (max-width: 620px) {
   .nav-link { display: none; }
-  .hero h1 { font-size: clamp(2.7rem, 13.5vw, 4rem); }
+  .hero h1 { font-size: clamp(1.9rem, 9.6vw, 3rem); }
+  /* flow as one sentence — forced breaks orphan words at this width */
+  .hero h1 .line { display: inline; }
   .player { gap: 1rem; }
   .play-btn { width: 60px; height: 60px; }
 }
