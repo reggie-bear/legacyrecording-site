@@ -781,6 +781,13 @@ em { font-style: italic; }
   color: var(--fg-strong);
   transition: color 0.9s ease;
 }
+.promise-rights {
+  margin-top: 1.1rem;
+  max-width: 34em;
+  font-size: 1.02rem;
+  color: var(--fg-dim);
+  transition: color 0.9s ease;
+}
 
 /* ── VIII · Finale ──────────────────────────────────────────────── */
 .finale {
